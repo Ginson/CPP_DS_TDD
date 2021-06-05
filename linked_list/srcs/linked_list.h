@@ -3,12 +3,12 @@
 struct linked_list_node
 {
     int data;
-    linked_list_node *node;
+    linked_list_node *next;
 
     linked_list_node(int val)
     {
         data = val;
-        node = nullptr;
+        next = nullptr;
     }
 };
 
@@ -28,6 +28,7 @@ class LinkedList
 
     linked_list_node* GetList() const;
     int GetListSize() const;
+    void DisplayList() const;
     
     void AppendList(linked_list_node* node);
     void ReverseList();
@@ -36,5 +37,6 @@ class LinkedList
     bool Find(int val);
 
     private:
-    linked_list_node* node{nullptr};
+    linked_list_node* node_{nullptr};
+    int node_count_{0};
 };
