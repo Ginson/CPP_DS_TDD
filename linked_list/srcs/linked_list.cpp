@@ -21,6 +21,8 @@ void LinkedList::Push_Front(int val)
         new_node->next = node_;
         node_ = new_node;
     }
+
+    node_count_++;
 }
 
 void LinkedList::Push_AtPosition(int val, int position)
@@ -42,6 +44,8 @@ void LinkedList::Push_AtPosition(int val, int position)
         new_node->next =  tmp_node->next;
         tmp_node->next = new_node;
     }
+
+    node_count_++;
 }
 
 void LinkedList::Push_Rear(int val)
@@ -63,6 +67,46 @@ void LinkedList::Push_Rear(int val)
 
     node_count_++;
 }    
+
+void LinkedList::Pop_Front()
+{
+    auto tmp_head = node_;
+    node_ = tmp_head->next;
+    delete tmp_head;
+    node_count_--;
+}
+
+void LinkedList::Pop_AtPosition(int position)
+{
+    auto tmp_head = node_;
+    auto prev_node = node_;
+    int idx{0};
+    while(idx < position)
+    {
+        prev_node = tmp_head;
+        tmp_head = tmp_head->next;
+        idx++;
+    }
+
+    prev_node->next = tmp_head->next;
+    delete tmp_head;
+    node_count_--;
+}
+
+void LinkedList::Pop_Rear()
+{
+    auto tmp_head = node_;
+    auto prev_node = node_;
+    while(tmp_head->next != nullptr)
+    {
+        prev_node = tmp_head;
+        tmp_head = tmp_head->next;
+    }
+    
+    delete tmp_head;
+    prev_node->next = nullptr;
+    
+}
 
 void LinkedList::DisplayList() const
 {
